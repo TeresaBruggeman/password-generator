@@ -15,6 +15,7 @@ function generatePassword() {
 // define the array
 var charType = [];
 //loop to accept input until user indicates done
+//change this to be confirms that come up and they say ok or no to, much better for UI
 while (charType.indexOf("done") == -1 ){
   var userCharChoice = prompt("What character type(s) should the password contain? Enter uppercase, lowercase, numbers, or special. Type Done if done chosing.");
   // all entries to lower case for error handling
@@ -23,14 +24,15 @@ while (charType.indexOf("done") == -1 ){
   while (userCharChoice !== "uppercase" && userCharChoice !== "lowercase" && userCharChoice !== "numbers" && userCharChoice !== "special" && userCharChoice !== "done"){
     userCharChoice = prompt("Please enter only uppercase, lowercase, numbers, or special! Or Done if you are done chosing." );
   }
-
     console.log(userCharChoice);
+    if (userCharChoice !== "" && userCharChoice !== "done" && userCharChoice !== charType);
+    //add choice to the array
     charType.push(userCharChoice);
+
     for (var i = 0; i < charType.length; i++) {
       console.log(charType[i]);
           }
   }
-
 
   //generating password
   var newPassword = "";
