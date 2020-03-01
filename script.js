@@ -4,73 +4,71 @@ var generateBtn = document.querySelector("#generate");
 // Create password
 // get length of password from user
 function generatePassword() {
-  var pwLength = prompt("How many characters should the password contain? Enter a number between 8 and 128");
-  parseInt(pwLength);
-  if (pwLength < 8 || pwLength > 128) {
-    pwLength=prompt("Entry invalid. Please enter with the range of 8 - 128.");
+  var pwLength = genPasswordLength();  //call function to get password length from user
+  var charType = [];
+  var charAvail = ["UPPERCASE", "lowercase", "numb3r5", "$peci@l"];
+  //loop to accept input until charAvail array has been exhausted
+  for (var i = 0; i < charAvail.length; i++) {
+    var userChoice = confirm("Confirm if " + charAvail[i] + " should be included in new password.");
+    localStorage.setItem.userChoice;
+    console.log(userChoice);
+    //populate charType array with user's choices
+    if (userChoice === true) {
+      charType.push(charAvail[i]);
+      console.log(charType);
+    }
+    //if they don't choose any character types end program
+    else if (userChoice === false && charAvail[i] === charAvail[charAvail.length - 1] && !charType.length) {
+      alert("Please try again");
+      return;
+    }
+    else { 
+    }
   }
-  console.log(pwLength);
-
-//get character sets from user
-// define the array
-var charType = [];
-//loop to accept input until user indicates done
-//change this to be confirms that come up and they say ok or no to, much better for UI
-while (charType.indexOf("done") == -1 ){
-  var userCharChoice = prompt("What character type(s) should the password contain? Enter uppercase, lowercase, numbers, or special. Type Done if done chosing.");
-  // all entries to lower case for error handling
-  userCharChoice = userCharChoice.toLowerCase();
-  // verify entry is legal
-  while (userCharChoice !== "uppercase" && userCharChoice !== "lowercase" && userCharChoice !== "numbers" && userCharChoice !== "special" && userCharChoice !== "done"){
-    userCharChoice = prompt("Please enter only uppercase, lowercase, numbers, or special! Or Done if you are done chosing." );
-  }
-    console.log(userCharChoice);
-    if (userCharChoice !== "" && userCharChoice !== "done" && userCharChoice !== charType);
-    //add choice to the array
-    charType.push(userCharChoice);
-
-    for (var i = 0; i < charType.length; i++) {
-      console.log(charType[i]);
-          }
-  }
-
   //generating password
+  var randomChar = "";
   var newPassword = "";
-  var randomChar ="";
-
-  while (newPassword.length < pwLength){
+  while (newPassword.length < pwLength) {
     randomCharSet = charType[(Math.floor(Math.random() * charType.length))];
     console.log(randomCharSet);
-    if (randomCharSet === "uppercase") {
-      randomChar = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split('')[(Math.floor(Math.random() * 26 ))];
+    if (randomCharSet === "UPPERCASE") {
+      randomChar = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split('')[(Math.floor(Math.random() * 26))];
       console.log(randomChar);
     }
     else if (randomCharSet === "lowercase") {
-      randomChar = ("abcdefghijklmnopqrstuvwxyz").split('')[(Math.floor(Math.random() * 26 ))];
+      randomChar = ("abcdefghijklmnopqrstuvwxyz").split('')[(Math.floor(Math.random() * 26))];
       console.log(randomChar);
     }
-    else if (randomCharSet === "numbers") {
-      randomChar = ("1234567890").split('')[(Math.floor(Math.random() * 10 ))];
+    else if (randomCharSet === "numb3r5") {
+      randomChar = ("1234567890").split('')[(Math.floor(Math.random() * 10))];
       console.log(randomChar);
     }
-    else if (randomCharSet === "special") {
-      randomChar = ("!@#%^&*()+-=:").split('')[(Math.floor(Math.random() * 13 ))];
+    else if (randomCharSet === "$peci@l") {
+      randomChar = ("!@#%^&*()+-=:").split('')[(Math.floor(Math.random() * 13))];
       console.log(randomChar);
     }
     newPassword += randomChar;
     randomChar = "";
   }
-  
   return newPassword;
 }
-
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
+//prompts user to specify how many characters long the password should be, returns numerics length
+function genPasswordLength() {
+  var pwLength = prompt("State how many characters the new password should contain. (Enter a number between 8-128)");
+  parseInt(pwLength);
+  while (pwLength < 8 || pwLength > 128) {
+    pwLength = prompt("Entry invalid. Please enter with the range of 8 - 128.");
+  }
+  console.log(pwLength);
+  return pwLength;
 }
+  // Write password to the #password input
+  function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
+
