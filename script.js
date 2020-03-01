@@ -54,10 +54,10 @@ function generatePassword() {
 }
 //prompts user to specify how many characters long the password should be, returns numerics length
 function genPasswordLength() {
-  var pwLength = prompt("State how many characters the new password should contain. (Enter a number between 8-128)");
+  var pwLength = prompt("Please enter the number of characters the new password should contain. (Enter a number between 8-128)");
   parseInt(pwLength);
   while (pwLength < 8 || pwLength > 128) {
-    pwLength = prompt("Entry invalid. Please enter with the range of 8 - 128.");
+    pwLength = prompt("Entry invalid. Please enter within the range of 8 - 128.");
   }
   console.log(pwLength);
   return pwLength;
