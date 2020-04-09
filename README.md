@@ -2,7 +2,7 @@ Password Generator
 
 This application generates a random password based on user-selected criteria. Password Generator runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. It features a clean and polished user interface and is responsive, ensuring adaptability to multiple screen sizes.
 
-Try it out- https://teresabruggeman.github.io/password-generator
+Try it out- https://bruggineer.github.io/password-generator
 
 ## User Story
 
